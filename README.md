@@ -1,3 +1,30 @@
+## HOW TO START THE PROJECT?
+The project is already described in `docker-compose.yml`, so the easiest way to start it is to use Docker as the project contains 7 different containers (services).
+I recomment using Docker, if you do not have it yet, download it from here: [Download Docker](https://www.docker.com/get-started/)
+
+After installing Docker follow these steps:
+- Open terminal in the project's root directory
+- Run `docker compose up --build` command in the terminal
+- Wait until you see the backend message `uvicorn server running on ...` 
+
+**IMPORTANT**
+After the backend has started, you can view the app, but you will not be able to use the AI models. That is because the Ollama models need to be pulled first, so follow these steps:
+- Run `docker ps` command
+- Find the `lecture-scraper-backend` container and copy its ID
+- Now run `docker exec -it {This is the container ID} ollama pull llama3.2:3b
+- After it fineshes, install the next model by running:
+``` docker exec -it {This is the container ID} ollama pull  nomic-embed-text ```
+
+Now the app will be running correctly.
+
+*NOTE: If something is not working, it may be due to several reasons:*
+1. The models require GPU and CUDA, but you do not have them.
+2. Size limitation - the app and models may require more space than you have
+3. Ports not being exposed correctly.
+
+*So keep that in mind in case something goes wrong.*
+
+
 # Specification (Task 1)
 
 ---
